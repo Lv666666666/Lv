@@ -1,0 +1,59 @@
+package exchange;
+
+import java.util.Scanner;
+
+public class exchange {
+
+	public static void main(String[] args) {
+
+		final int TWO_DOLLARS=2;
+		final int ONE_DOLLAR=1;
+		final int FIFTY_DOLLAR_CENTS=50;
+		final int TWENTY_DOLLAR_CENTS=20;
+		final int TEN_DOLLAR_CENTS=10;
+		final int FIVE_DOLLAR_CENTS=5;
+		final int ONE_DOLLAR_CENT=1;
+		
+		int dollarInt; //整数钱数
+		int dollarFloat; //小数钱数
+		int twoDollars;
+		int oneDollar;
+		int fiftyDollarcents;
+		int twentyDollarcents;
+		int tenDollarcents;
+		int fiveDollarcents;
+		int oneDollarcent;
+		
+		float money;
+		
+		Scanner scan = new Scanner(System.in);
+
+		System.out.print("请输入需要置换的钱数：（以美元为单位）");
+		money = scan.nextFloat();
+		
+		while(money<0) {
+			System.out.print("输入错误！请重新输入：");
+			money = scan.nextFloat();
+		}
+		if(money == 0) {
+			System.out.println("输入钱数为0，不需要兑换！");
+		}
+		else { //钱数不为0
+			twoDollars = (int) (money /TWO_DOLLARS); //
+			oneDollar = (int) (money%TWO_DOLLARS); //
+			money=100*money-2*100*twoDollars-1*100*oneDollar; //小数钱数*100
+			fiftyDollarcents = (int) (money /FIFTY_DOLLAR_CENTS);
+			twentyDollarcents = (int) ((money%FIFTY_DOLLAR_CENTS)/TWENTY_DOLLAR_CENTS);
+			tenDollarcents = (int) (((money%FIFTY_DOLLAR_CENTS)%TWENTY_DOLLAR_CENTS)/TEN_DOLLAR_CENTS);
+			fiveDollarcents = (int) ((((money%FIFTY_DOLLAR_CENTS)%TWENTY_DOLLAR_CENTS)%TEN_DOLLAR_CENTS)/FIVE_DOLLAR_CENTS);
+			oneDollarcent = (int) ((((((money%FIFTY_DOLLAR_CENTS)%TWENTY_DOLLAR_CENTS)%TEN_DOLLAR_CENTS)%FIVE_DOLLAR_CENTS))/ONE_DOLLAR_CENT);
+			System.out.print("2美元的个数为" + twoDollars);
+			System.out.print("  1美元的个数为" + oneDollar);
+			System.out.print("  50美分的个数为" + fiftyDollarcents);
+			System.out.print("  20美分的个数为" + twentyDollarcents);
+			System.out.print("  10美分的个数为" + tenDollarcents);
+			System.out.print("  5美分的个数为" + fiveDollarcents);
+			System.out.println("  1美分的个数为" + oneDollarcent);
+		}
+	}
+}
