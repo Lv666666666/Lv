@@ -1,0 +1,98 @@
+package picture;
+
+import java.util.Scanner;
+
+public class picture {
+	public static void main(String args[]) {
+		
+		final double COLOR_PRICE = 0.10;
+		final double REGULAR_PRICE = 0.15;
+		final double FANCY_PRICE = 0.25;
+		final double HARDBOARD_PRICE = 0.02;
+		final double GLASS_PRICE = 0.07;
+		final double CROWN_PRICE = 0.35;
+		
+		int crownNum; //皇冠数量
+		float length; //长度
+		float width; //宽度
+		double totalPrice = 0;
+		int frameType; //框架类型
+		int colorKind; //颜色
+		int hardboard; //硬纸板
+		int glass; //玻璃
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("请输入图片长度和宽度：（以英寸为单位）");
+		length = scan.nextFloat();
+		width = scan.nextFloat();
+		while(length == 0 || width == 0) {
+			System.out.print("输入尺寸错误，请重新输入：");
+			length = scan.nextFloat();
+			width = scan.nextFloat();
+		}
+		
+		System.out.println("目前价格为："+totalPrice);
+		
+		//框架类型 普通 精美 无
+		System.out.print("请输入框架类型：（regular为1/fancy为2/null为0）");
+		frameType = scan.nextInt();
+//		int regular=1 ;
+//		int fancy=2 ;
+		if(frameType == 1 ) { //普通类型
+			totalPrice =totalPrice + REGULAR_PRICE;
+		}
+		else if(frameType == 2) { //精美类型
+			totalPrice =totalPrice + FANCY_PRICE;
+		}
+		else{
+			totalPrice =totalPrice;
+		}
+		System.out.println("目前价格为："+totalPrice);
+		
+		//上色种类 红 橙 黄 绿 青 蓝 紫 无
+		System.out.print("请输入上色种类：（red为1/orange为2/yellow为3/green为4/cyan为5/bule为6/purple为7/null为0）");
+		colorKind = scan.nextInt();
+//		String red=null,orange=null,yellow = null,green=null,cyan=null,bule=null,purple=null;
+		if(colorKind == 0) {
+			totalPrice = totalPrice;
+		}
+		
+		else if(colorKind == 1 || colorKind == 2 || colorKind == 3 || colorKind == 4 || colorKind == 5 || colorKind == 6 || colorKind == 7){
+			totalPrice = totalPrice +(length+width)*2*COLOR_PRICE;
+		}
+		System.out.println("目前价格为："+totalPrice);
+		
+		//皇冠数量
+		System.out.print("请输入放置的皇冠数量：（从左往右，从上往下）");
+		crownNum = scan.nextInt();
+		if(crownNum == 0) {
+			totalPrice = totalPrice;
+		}
+		else {
+			totalPrice = totalPrice + crownNum*CROWN_PRICE;
+		}
+		System.out.println("目前价格为："+totalPrice);
+		
+		System.out.print("是否需要在图片后面放置硬纸板：（y为1/n为0）");
+		hardboard = scan.nextInt();
+//		String n = null;
+//		String y = null;
+		if(hardboard == 0) {
+			totalPrice = totalPrice;
+		}
+		else totalPrice = totalPrice + HARDBOARD_PRICE*length*width;
+		System.out.println("目前价格为："+totalPrice);
+		
+		System.out.print("是否需要在图上面面放置玻璃：（y为1/n为0）");
+		glass = scan.nextInt();
+		if(glass == 0) {
+			totalPrice = totalPrice;
+		}
+		else 
+			totalPrice = totalPrice + GLASS_PRICE*length*width;
+		System.out.println("目前价格为："+totalPrice);
+		
+	}
+
+}
